@@ -12,7 +12,7 @@
     "start": "remix-serve ./build/server/index.js",
     "docker-start": "npm run setup && npm run start",
     "worker": "tsx worker.ts",
-    "setup": "prisma generate && prisma migrate deploy",
+    "setup": "prisma generate && (prisma migrate deploy || (prisma migrate resolve --applied 20260508084730_init && prisma migrate deploy) || prisma db push)",
     "lint": "eslint --cache --cache-location ./node_modules/.cache/eslint .",
     "shopify": "shopify",
     "prisma": "prisma",
