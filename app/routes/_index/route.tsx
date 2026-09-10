@@ -104,14 +104,6 @@ export default function LandingPage() {
         <span className={styles.footerText}>
           © {new Date().getFullYear()} Flow Email Notification · Built for Shopify
         </span>
-        <a
-          href="https://shopify-notification-app.vercel.app"
-          className={styles.footerLink}
-          target="_blank"
-          rel="noreferrer"
-        >
-          shopify-notification-app.vercel.app ↗
-        </a>
       </footer>
 
     </div>

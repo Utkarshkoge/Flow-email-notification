@@ -1,21 +1,21 @@
 FROM node:22-alpine
 RUN apk add --no-cache openssl
 
-EXPOSE 3000
-
 WORKDIR /app
 
-ENV NODE_ENV=production
-
+# Install dependencies required for building the app
 COPY package.json package-lock.json* ./
+RUN npm ci
 
-RUN npm ci --omit=dev && npm cache clean --force
-# Remove CLI packages since we don't need them in production by default.
-# Remove this line if you want to run CLI commands in your container.
-RUN npm remove @shopify/cli
-
+# Copy source code and build Remix application
 COPY . .
-
 RUN npm run build
+
+# Remove development dependencies to keep the production image lean
+RUN npm prune --omit=dev && npm cache clean --force
+
+ENV NODE_ENV=production
+ENV PORT=3000
+EXPOSE 3000
 
 CMD ["npm", "run", "docker-start"]
