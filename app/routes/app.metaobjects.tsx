@@ -92,14 +92,14 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
         allDefinitions: definitions.map((d) => ({ id: d.id, name: d.name, type: d.type })),
         subscriptionsMap: cleanSubscriptionsMap,
         pagination: { page, totalPages, totalItems, pageSize, searchQuery },
-        appUrl: process.env.SHOPIFY_APP_URL || "",
+        appUrl: process.env.SHOPIFY_APP_URL || "https://flow-email-notification-production.up.railway.app",
     });
 };
 
 export const action = async ({ request }: ActionFunctionArgs) => {
     const { admin, session } = await authenticate.admin(request);
     const formData = await request.formData();
-    const appUrl = process.env.SHOPIFY_APP_URL || "";
+    const appUrl = process.env.SHOPIFY_APP_URL || "https://flow-email-notification-production.up.railway.app";
 
     const rawChanges = formData.get("changes") as string;
     if (!rawChanges) {

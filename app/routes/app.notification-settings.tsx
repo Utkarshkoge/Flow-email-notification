@@ -42,7 +42,7 @@ import {
 export const loader = async ({ request }: LoaderFunctionArgs) => {
     const { admin, session } = await authenticate.admin(request);
     const shop = session.shop;
-    const appUrl = process.env.SHOPIFY_APP_URL || "";
+    const appUrl = process.env.SHOPIFY_APP_URL || "https://flow-email-notification-production.up.railway.app";
 
     // Fetch active subscriptions directly from Shopify
     const existingMap = await getActiveWebhookSubscriptions(admin);
@@ -64,7 +64,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 // ── Action: Sync selected webhooks via GraphQL Admin API ─────────────────────
 export const action = async ({ request }: ActionFunctionArgs) => {
     const { admin } = await authenticate.admin(request);
-    const appUrl = process.env.SHOPIFY_APP_URL || "";
+    const appUrl = process.env.SHOPIFY_APP_URL || "https://flow-email-notification-production.up.railway.app";
 
     const formData = await request.formData();
     const raw = formData.get("selectedTopics");

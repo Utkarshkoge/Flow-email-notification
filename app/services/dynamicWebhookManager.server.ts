@@ -192,7 +192,15 @@ export async function syncWebhookSubscriptions(
     appUrl: string,
     desiredTopics: string[]
 ): Promise<{ created: string[]; deleted: string[]; errors: string[] }> {
-    const cleanAppUrl = appUrl.trim().replace(/\/+$/, "");
+    // Fallback to env var if caller passed an empty string
+    const resolvedUrl = appUrl || process.env.SHOPIFY_APP_URL || "";
+
+    if (!resolvedUrl) {
+        console.error("[DynamicWebhookManager] SHOPIFY_APP_URL is not set — cannot build webhook callback URL.");
+        return { created: [], deleted: [], errors: ["SHOPIFY_APP_URL is not configured."] };
+    }
+
+    const cleanAppUrl = resolvedUrl.trim().replace(/\/+$/, "");
     const callbackUrl = `${cleanAppUrl.replace("http://", "https://")}/webhooks/shopify`;
 
     const desiredSet = new Set(desiredTopics);
