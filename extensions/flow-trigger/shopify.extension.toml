@@ -1,0 +1,31 @@
+[[extensions]]
+name = "Resource Logged Trigger"
+handle = "order-email-trigger"
+type = "flow_trigger"
+uid = "4b16ecb5-375c-5a4c-b58f-f6dc8f530d11b9235bfa"
+description = "Triggers when a resource (Product, Order, Customer, etc.) is created, updated, or deleted."
+
+[settings]
+  [[settings.fields]]
+  key = "resourceType"
+  type = "single_line_text_field"
+  name = "Resource Type"
+  description = "The type of resource (Product, Order, Customer, etc.)"
+
+  [[settings.fields]]
+  key = "eventType"
+  type = "single_line_text_field"
+  name = "Event Type"
+  description = "The action performed (create, update, delete)"
+
+  [[settings.fields]]
+  key = "createdAt"
+  type = "single_line_text_field"
+  name = "Created At"
+  description = "Timestamp when the resource was created"
+
+  [[settings.fields]]
+  key = "emailBody"
+  type = "single_line_text_field"
+  name = "Email Template"
+  description = "Formatted HTML email including resource details and payload"
