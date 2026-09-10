@@ -413,13 +413,6 @@ export const RESOURCE_WEBHOOK_CONFIGS: ResourceWebhookConfig[] = [
             { id: "delete", label: "Remove", topic: "CHECKOUTS_DELETE" },
         ],
     },
-    {
-        resourceName: "Bulk Operation",
-        emoji: "⚡",
-        actions: [
-            { id: "finish", label: "Finish", topic: "BULK_OPERATIONS_FINISH" },
-        ],
-    },
 ];
 
 // Set of all topic enums managed by the dynamic manager

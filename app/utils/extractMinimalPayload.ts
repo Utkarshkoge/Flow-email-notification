@@ -148,9 +148,6 @@ const RESOURCE_FIELDS: Record<string, string[]> = {
     "App Purchase": ["status"],
     "App Subscription": ["status"],
 
-    // Bulk Operations
-    "Bulk Operation": ["status", "type", "url"],
-
     // Shipping
     "Shipping Address": [],
 

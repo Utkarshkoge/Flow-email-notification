@@ -20,7 +20,6 @@ interface WebhookEventRow {
 
 // ── All resource type definitions with emoji + badge tones ──
 const RESOURCE_DEFINITIONS: Record<string, { emoji: string; tone: "info" | "success" | "attention" | "warning" | "critical" | "new" }> = {
-    "Bulk Operation": { emoji: "⚡", tone: "warning" },
     "Cart": { emoji: "🛒", tone: "info" },
     "Channel": { emoji: "📡", tone: "attention" },
     "Checkout": { emoji: "💰", tone: "success" },

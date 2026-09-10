@@ -8,7 +8,6 @@
 // ── Types ──
 
 export type ResourceType =
-    | "Bulk Operation"
     | "Cart"
     | "Channel"
     | "Checkout"
@@ -133,9 +132,6 @@ export interface TopicInfo {
 // ── Topic → Info Mapping ──
 
 const TOPIC_MAP: Record<string, TopicInfo> = {
-    // ── Bulk Operations ──
-    BULK_OPERATIONS_FINISH: { resourceType: "Bulk Operation", eventAction: "Finished", category: "bulk_operations" },
-
     // ── Carts ──
     CARTS_CREATE: { resourceType: "Cart", eventAction: "Created", category: "carts" },
     CARTS_UPDATE: { resourceType: "Cart", eventAction: "Updated", category: "carts" },

@@ -516,17 +516,6 @@ These fields are **always** extracted when present in the payload.
 
 ---
 
-## ⚙️ Bulk Operations
-
-### Bulk Operation
-| # | Field    | Example                            |
-|---|----------|------------------------------------|
-| 1 | `status` | `"completed"`                      |
-| 2 | `type`   | `"query"`                          |
-| 3 | `url`    | `"https://storage.shopify.com/..."` |
-
----
-
 ## 📫 Shipping Address
 | # | Field | Note                    |
 |---|-------|--------------------------|
