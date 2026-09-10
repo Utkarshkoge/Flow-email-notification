@@ -53,7 +53,7 @@ export async function addWebhookJob(
                 count: 5000,
             },
             removeOnFail: {
-                age: 604800,
+                age: 86400,
                 count: 5000,
             },
         });

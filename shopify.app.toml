@@ -2,7 +2,7 @@
 
 client_id = "4365daf68a499b592d66c09e20f0ea46"
 name = "Flow Email Notification"
-application_url = "https://example.com"
+application_url = "https://flow-email-notification-production.up.railway.app"
 embedded = true
 
 [build]
@@ -24,5 +24,5 @@ api_version = "2026-01"
 scopes = "read_products,write_products,read_orders,write_metaobject_definitions,read_draft_orders,read_customers,read_companies,read_inventory,read_publications,read_content,read_metaobjects,write_metaobjects,read_metaobject_definitions,read_fulfillments,read_locations,read_shipping,read_themes,read_locales,read_markets,read_returns,read_discounts,read_product_listings,read_payment_terms,read_assigned_fulfillment_orders,read_merchant_managed_fulfillment_orders,read_third_party_fulfillment_orders,read_customer_merge"
 
 [auth]
-redirect_urls = ["https://example.com/auth/callback"]
+redirect_urls = ["https://flow-email-notification-production.up.railway.app/auth/callback"]
 
