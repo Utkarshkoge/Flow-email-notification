@@ -57,7 +57,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     }
   );
 
-  const fetchData = await fetchRes.json();
+  const fetchData: any = await fetchRes.json();
   const metaobjects = fetchData.data?.metaobjects;
 
   if (!metaobjects) {
