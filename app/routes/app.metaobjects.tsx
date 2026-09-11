@@ -322,13 +322,6 @@ export default function MetaobjectWebhooksPage() {
                 <TitleBar title="Metaobject Webhook Settings" />
 
                 <BlockStack gap="500">
-                    <Banner tone="info">
-                        <p>
-                            Configure custom webhooks for each metaobject definition. Toggle{" "}
-                            <strong>Create</strong>, <strong>Update</strong>, or <strong>Remove</strong>{" "}
-                            events, then click <strong>Save Settings</strong> to apply your changes to Shopify.
-                        </p>
-                    </Banner>
 
                     {actionData?.status === "error" && (
                         <Banner tone="critical" title="Save Error">

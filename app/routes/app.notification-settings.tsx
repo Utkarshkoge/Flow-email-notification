@@ -100,6 +100,15 @@ export default function NotificationSettingsPage() {
 
     const [search, setSearch] = useState("");
 
+    // Auto-dismiss banner after 2 seconds
+    const [showBanner, setShowBanner] = useState(false);
+    useEffect(() => {
+        if (!actionData) return;
+        setShowBanner(true);
+        const timer = setTimeout(() => setShowBanner(false), 2000);
+        return () => clearTimeout(timer);
+    }, [actionData]);
+
     // Sync state if loader activeTopics update (e.g. after action reload)
     useEffect(() => {
         setSelectedTopics(new Set(activeTopics));
@@ -226,18 +235,10 @@ export default function NotificationSettingsPage() {
                 <Layout.Section>
                     <BlockStack gap="200">
                         {/* Info Banner */}
-                        <Banner tone="info">
-                            <p>
-                                Choose which specific events (<strong>Create</strong>,{" "}
-                                <strong>Update</strong>, or <strong>Remove</strong>) should trigger
-                                notifications. Webhook subscriptions are created and deleted
-                                dynamically in Shopify via the Admin API. Your app only receives
-                                webhooks for the events you configure.
-                            </p>
-                        </Banner>
+
 
                         {/* Result / Error Banner */}
-                        {actionData && (
+                        {actionData && showBanner && (
                             <Banner
                                 tone={actionData.success ? "success" : "critical"}
                                 title={

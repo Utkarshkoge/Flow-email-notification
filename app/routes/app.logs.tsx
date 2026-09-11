@@ -118,7 +118,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     const cursor = url.searchParams.get("cursor");
     const direction = url.searchParams.get("direction") || "next";
     const resourceFilter = url.searchParams.get("resource") || "All";
-    const pageSize = 10;
+    const pageSize = 8;
 
     // Check if metaobject definition exists
     const defRes = await admin.graphql(
