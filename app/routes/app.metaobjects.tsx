@@ -48,9 +48,9 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
     const { admin, session } = await authenticate.admin(request);
 
     const url = new URL(request.url);
-    const page = parseInt(url.searchParams.get("page") || "1", 10);
+    const page = parseInt(url.searchParams.get("page") || "1", 8);
     const searchQuery = (url.searchParams.get("search") || "").toLowerCase();
-    const pageSize = 10;
+    const pageSize = 8;
 
     // Fetch all definitions
     const definitions = await fetchMetaobjectDefinitions(admin);

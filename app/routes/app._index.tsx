@@ -1,5 +1,6 @@
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { useNavigate } from "@remix-run/react";
+import { useEffect } from "react";
 import {
   Page,
   Layout,
@@ -29,6 +30,43 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export default function Index() {
   const navigate = useNavigate();
+
+  // ── Background cleanup: silently delete metaobjects older than 30 days ──────
+  // Pagination is driven from the frontend: we keep calling the API with the
+  // endCursor returned by each response until hasNextPage is false.
+  useEffect(() => {
+    let cancelled = false;
+
+    async function cleanupOldRecords() {
+      let cursor: string | null = null;
+
+      while (!cancelled) {
+        const params = cursor ? `?cursor=${encodeURIComponent(cursor)}` : "";
+        try {
+          const res = await fetch(`/api/metaobject/data${params}`);
+          if (!res.ok) break; // network / auth error – stop silently
+
+          const data: {
+            deleted: number;
+            hasNextPage: boolean;
+            endCursor: string | null;
+            errors: string[];
+          } = await res.json();
+
+          if (!data.hasNextPage) break; // no more old records
+          cursor = data.endCursor;       // advance to next page
+        } catch {
+          break; // fetch error – stop silently
+        }
+      }
+    }
+
+    cleanupOldRecords();
+
+    return () => {
+      cancelled = true; // abort the loop if the component unmounts
+    };
+  }, []); // run once on mount
 
   return (
     <Page>
